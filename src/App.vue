@@ -5,10 +5,17 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  components: { HelloWorld }
+  components: { HelloWorld },
+  mounted() {
+    this.getMenuItems()
+  },
+  methods: {
+    ...mapActions('navigationStore', ['getMenuItems'])
+  }
 }
 </script>
 

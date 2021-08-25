@@ -1,20 +1,29 @@
+import { getMenuItems } from '@/services/api-service'
+
 const state = {
-  test: false
+  menuItems: null
 }
 
 const actions = {
-  setTest ({ commit }, test) {
-    commit('setTest', test)
+  async getMenuItems ({ commit }) {
+    let menuItems = []
+    try {
+      menuItems = await getMenuItems()
+    } catch(error) {
+      console.error(error)
+    }
+    commit('setMenuItems', menuItems)
   }
 }
 
 const mutations = {
-  setTest (state, test) {
-    state.test = test
+  setMenuItems (state, menuItems) {
+    state.menuItems = menuItems
   }
 }
 
 export default {
+  namespaced: true,
   state,
   actions,
   mutations
